@@ -1,5 +1,7 @@
+'use client'
+
 import type { Metadata } from 'next'
-import { Tajawal } from 'next/font/google';
+import { Tajawal } from 'next/font/google'
 import './globals.css'
 import { DarkModeProvider } from '@/contexts/DarkModeContext'
 import Navigation from '@/components/Navigation'
@@ -7,13 +9,13 @@ import Navigation from '@/components/Navigation'
 const tajawal = Tajawal({
   subsets: ['arabic'],
   weight: ['400', '500', '700'],
-});
+})
 
 export const metadata: Metadata = {
   title: 'Ahmed Sports - المباريات والقنوات',
-  description: 'Live sports matches and channels streaming platform - منصة بث المباريات والقنوات المباشرة',
+  description:
+    'Live sports matches and channels streaming platform - منصة بث المباريات والقنوات المباشرة',
   manifest: '/manifest.json',
-  themeColor: '#3b82f6',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -33,13 +35,6 @@ export const metadata: Metadata = {
     title: 'Ahmed Sports',
     description: 'Live sports matches and channels streaming platform',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-    viewportFit: 'cover',
-  },
   icons: {
     icon: [
       { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
@@ -50,6 +45,15 @@ export const metadata: Metadata = {
       { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
     ],
   },
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: 'cover',
+  themeColor: '#3b82f6',
 }
 
 export default function RootLayout({
@@ -72,4 +76,3 @@ export default function RootLayout({
     </html>
   )
 }
-
