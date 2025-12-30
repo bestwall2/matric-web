@@ -44,14 +44,15 @@ export default function VideoPlayer({
             playerRef.current = player
            
             player.initialize(videoRef.current, channel.dash_url, true)
-            player.updateSettings({
-                streaming: {
-                  stableBufferTime: 30,
-                  bufferTimeAtTopQuality: 30,
-                  bufferTimeAtTopQualityLongForm: 30,
-                  bufferBehind: 30,
-                },
-              })
+           player.updateSettings({
+            streaming: {
+              stableBufferTime: 30,
+              bufferTimeAtTopQuality: 30,
+              bufferTimeAtTopQualityLongForm: 30,
+              bufferBehind: 30,
+            } as any,
+          })
+
             
             setLoading(false)
           } catch (dashError) {
