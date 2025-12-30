@@ -59,7 +59,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={tajawal.className}>
         <DarkModeProvider>
           <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
             <Navigation />
