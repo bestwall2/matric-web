@@ -7,8 +7,46 @@ import Navigation from '@/components/Navigation'
 const inter = Inter({ subsets: ['latin', 'arabic'] })
 
 export const metadata: Metadata = {
-  title: 'Ahmed Site - Matches & Channels',
-  description: 'Live matches and channels streaming platform',
+  title: 'Ahmed Sports - المباريات والقنوات',
+  description: 'Live sports matches and channels streaming platform - منصة بث المباريات والقنوات المباشرة',
+  manifest: '/manifest.json',
+  themeColor: '#3b82f6',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Ahmed Sports',
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'Ahmed Sports',
+    title: 'Ahmed Sports - المباريات والقنوات',
+    description: 'Live sports matches and channels streaming platform',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Ahmed Sports',
+    description: 'Live sports matches and channels streaming platform',
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    viewportFit: 'cover',
+  },
+  icons: {
+    icon: [
+      { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/icon-152x152.png', sizes: '152x152', type: 'image/png' },
+      { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+    ],
+  },
 }
 
 export default function RootLayout({
