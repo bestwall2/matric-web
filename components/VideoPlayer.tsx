@@ -42,15 +42,16 @@ export default function VideoPlayer({
             const dashjs = await import('dashjs')
             const player = dashjs.MediaPlayer().create()
             playerRef.current = player
-            
+            player.setLowLatencyEnabled(true)
             player.initialize(videoRef.current, channel.dash_url, true)
             player.updateSettings({
-              streaming: {
-                bufferingGoal: 30,
-                rebufferingGoal: 2,
-                bufferBehind: 30,
-              },
-            })
+                streaming: {
+                  stableBufferTime: 30,
+                  bufferTimeAtTopQuality: 30,
+                  bufferTimeAtTopQualityLongForm: 30,
+                  bufferBehind: 30,
+                },
+              })
             
             setLoading(false)
           } catch (dashError) {
