@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Tajawal } from 'next/font/google';
 import './globals.css'
 import { DarkModeProvider } from '@/contexts/DarkModeContext'
 import Navigation from '@/components/Navigation'
 
-const inter = Inter({ subsets: ['latin', 'arabic'] })
+const tajawal = Tajawal({
+  subsets: ['arabic'],
+  weight: ['400', '500', '700'],
+});
 
 export const metadata: Metadata = {
   title: 'Ahmed Sports - المباريات والقنوات',
