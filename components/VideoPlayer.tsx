@@ -42,7 +42,7 @@ export default function VideoPlayer({
             const dashjs = await import('dashjs')
             const player = dashjs.MediaPlayer().create()
             playerRef.current = player
-            player.setLowLatencyEnabled(true)
+           
             player.initialize(videoRef.current, channel.dash_url, true)
             player.updateSettings({
                 streaming: {
