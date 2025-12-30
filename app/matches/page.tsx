@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Edit2, Trash2, RefreshCw, Save } from 'lucide-react'
 import MatchCard from '@/components/MatchCard'
 import MatchEditModal from '@/components/MatchEditModal'
+export const dynamic = 'force-dynamic'
 
 interface Match {
   name1: string
@@ -25,7 +26,7 @@ export default function MatchesPage() {
   const [editingIndex, setEditingIndex] = useState<number | null>(null)
   const [editData, setEditData] = useState<Match | null>(null)
   const [saving, setSaving] = useState(false)
-
+  const { darkMode } = useDarkMode()
   const fetchMatches = async () => {
     setLoading(true)
     try {
