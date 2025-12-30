@@ -58,16 +58,18 @@ export default function VideoPlayer({
           } catch (dashError) {
             // Fallback: try shaka-player
             try {
-              const shaka = await import('shaka-player')
+             
+              const shakaImport = await import('shaka-player')
+              const shaka = shakaImport.default as any
               
               if (shaka.polyfill && shaka.polyfill.installAll) {
                 shaka.polyfill.installAll()
               }
-
+              
               if (shaka.Player && shaka.Player.isBrowserSupported()) {
                 const player = new shaka.Player(videoRef.current)
                 playerRef.current = player
-
+              
                 player.configure({
                   streaming: {
                     bufferingGoal: 30,
@@ -75,12 +77,13 @@ export default function VideoPlayer({
                     bufferBehind: 30,
                   },
                 })
-
+              
                 await player.load(channel.dash_url)
                 setLoading(false)
               } else {
                 throw new Error('المتصفح غير مدعوم')
               }
+
             } catch (shakaError) {
               // Final fallback: try direct URL (may not work for MPD)
               console.warn('MPD players failed, trying direct URL:', shakaError)
