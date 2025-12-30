@@ -1,10 +1,7 @@
-'use client'
-
 import type { Metadata } from 'next'
 import { Tajawal } from 'next/font/google'
 import './globals.css'
-import { DarkModeProvider } from '@/contexts/DarkModeContext'
-import Navigation from '@/components/Navigation'
+import ClientLayout from './ClientLayout'
 
 const tajawal = Tajawal({
   subsets: ['arabic'],
@@ -64,14 +61,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body className={tajawal.className}>
-        <DarkModeProvider>
-          <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-            <Navigation />
-            <main className="container mx-auto px-4 py-8">
-              {children}
-            </main>
-          </div>
-        </DarkModeProvider>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   )
