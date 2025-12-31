@@ -11,7 +11,7 @@ const notoSansArabic = Noto_Sans_Arabic({
 })
 
 export const metadata: Metadata = {
-  title: 'Ahmed Sports - المباريات والقنوات',
+  title: 'Matric - المباريات والقنوات',
   description: 'Live sports matches and channels streaming platform - منصة بث المباريات والقنوات المباشرة',
   manifest: '/manifest.json',
   appleWebApp: {
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    siteName: 'Ahmed Sports',
-    title: 'Ahmed Sports - المباريات والقنوات',
+    siteName: 'Matric',
+    title: 'Matric - المباريات والقنوات',
     description: 'Live sports matches and channels streaming platform',
   },
   twitter: {
