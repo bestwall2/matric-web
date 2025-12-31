@@ -4,7 +4,7 @@ import { Calendar, Tv } from 'lucide-react'
 export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center space-y-8">
+      <div className="text-center space-y-5">
         <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
           مرحباً بك
         </h1>
