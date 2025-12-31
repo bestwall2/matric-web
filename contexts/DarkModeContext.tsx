@@ -38,10 +38,7 @@ export function DarkModeProvider({ children }: { children: React.ReactNode }) {
     setDarkMode(!darkMode)
   }
 
-  if (!mounted) {
-    return <>{children}</>
-  }
-
+  // Always provide the context, even during SSR/static generation
   return (
     <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
       {children}

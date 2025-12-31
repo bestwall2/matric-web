@@ -2,8 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import { RefreshCw, Play } from 'lucide-react'
+import dynamic from 'next/dynamic'
 import ChannelCard from '@/components/ChannelCard'
-import VideoPlayer from '@/components/VideoPlayer'
+
+const VideoPlayer = dynamic(() => import('@/components/VideoPlayer'), {
+  ssr: false,
+  loading: () => <div>Loading player...</div>,
+})
 
 interface Channel {
   name: string

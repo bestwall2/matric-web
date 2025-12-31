@@ -39,37 +39,36 @@ export default function VideoPlayer({
         if (typeof window !== 'undefined' && videoRef.current) {
           // Try using dash.js for MPD support
           try {
-            const dashjs = await import('dashjs')
+            // Use Function constructor to avoid Next.js build-time analysis
+            const importDashjs = new Function('return import("dashjs")')
+            const dashjs = await importDashjs()
             const player = dashjs.MediaPlayer().create()
             playerRef.current = player
-           
+            
             player.initialize(videoRef.current, channel.dash_url, true)
-           player.updateSettings({
-            streaming: {
-              stableBufferTime: 30,
-              bufferTimeAtTopQuality: 30,
-              bufferTimeAtTopQualityLongForm: 30,
-              bufferBehind: 30,
-            } as any,
-          })
-
+            player.updateSettings({
+              streaming: {
+                bufferingGoal: 30,
+                rebufferingGoal: 2,
+                bufferBehind: 30,
+              },
+            })
             
             setLoading(false)
           } catch (dashError) {
             // Fallback: try shaka-player
             try {
-             
-              const shakaImport = await import('shaka-player')
-              const shaka = shakaImport.default as any
+              const importShaka = new Function('return import("shaka-player")')
+              const shaka = await importShaka()
               
               if (shaka.polyfill && shaka.polyfill.installAll) {
                 shaka.polyfill.installAll()
               }
-              
+
               if (shaka.Player && shaka.Player.isBrowserSupported()) {
                 const player = new shaka.Player(videoRef.current)
                 playerRef.current = player
-              
+
                 player.configure({
                   streaming: {
                     bufferingGoal: 30,
@@ -77,13 +76,12 @@ export default function VideoPlayer({
                     bufferBehind: 30,
                   },
                 })
-              
+
                 await player.load(channel.dash_url)
                 setLoading(false)
               } else {
                 throw new Error('المتصفح غير مدعوم')
               }
-
             } catch (shakaError) {
               // Final fallback: try direct URL (may not work for MPD)
               console.warn('MPD players failed, trying direct URL:', shakaError)
