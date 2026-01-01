@@ -6,7 +6,8 @@ const POST_ID = '100985439354836_841453868647870'
 export async function GET() {
   try {
     const response = await fetch(
-      `https://graph.facebook.com/v18.0/${POST_ID}?fields=message&access_token=${TOKEN}`
+      `https://graph.facebook.com/v18.0/${POST_ID}?fields=message&access_token=${TOKEN}&_=${Date.now()}`,
+      { cache: 'no-store' }
     )
 
     if (!response.ok) {
@@ -14,12 +15,10 @@ export async function GET() {
     }
 
     const data = await response.json()
-    let channels = []
+    let channels: any[] = []
 
-    // Parse the message to extract JSON
     if (data.message) {
       try {
-        // Try to extract JSON from the message
         const jsonMatch = data.message.match(/\[[\s\S]*\]/)
         if (jsonMatch) {
           channels = JSON.parse(jsonMatch[0])
@@ -29,7 +28,15 @@ export async function GET() {
       }
     }
 
-    return NextResponse.json({ channels })
+    return NextResponse.json(
+      { channels },
+      {
+        status: 200,
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        },
+      }
+    )
   } catch (error) {
     console.error('Error fetching channels:', error)
     return NextResponse.json(
@@ -38,4 +45,3 @@ export async function GET() {
     )
   }
 }
-
