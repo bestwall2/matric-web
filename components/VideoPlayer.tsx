@@ -45,7 +45,7 @@ export default function VideoPlayer({
             const player = dashjs.MediaPlayer().create()
             playerRef.current = player
             
-            player.initialize(videoRef.current, channel.dash_url, true)
+            player.initialize(videoRef.current, channel.source, true)
             player.updateSettings({
               streaming: {
                 bufferingGoal: 30,
